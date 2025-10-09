@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>STN PROJECT REBORN — Official</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f8f8f6;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#14aaa3;
+      --accent-dark:#0f7f77;
+      --danger:#ff5050;
+      --glass: rgba(255,255,255,0.7);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:#111}
+    .container{max-width:980px;margin:36px auto;padding:24px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:72px;height:72px;border-radius:12px;overflow:hidden;flex:0 0 72px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    h1.title{font-size:20px;margin:0}
+    p.subtitle{margin:0;color:var(--muted);font-size:13px}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid rgba(16,24,40,0.04);cursor:pointer;text-decoration:none;color:inherit;font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;border:none;box-shadow:0 8px 24px rgba(20,170,163,0.12)}
+
+    main{display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:22px}
+    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));padding:22px;border-radius:14px;box-shadow:0 8px 30px rgba(16,24,40,0.04)}
+    .hero h2{margin:0 0 8px 0;font-size:26px}
+    .hero p{margin:0 0 16px;color:var(--muted)}
+
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(16,24,40,0.03)}
+    .profile{display:flex;gap:16px;align-items:center}
+    .avatar{width:88px;height:88px;border-radius:12px;overflow:hidden;flex:0 0 88px}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .meta h3{margin:0 0 6px 0}
+    .meta p{margin:0;color:var(--muted);font-size:13px}
+
+    .links{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .link{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;text-decoration:none;color:inherit;border:1px dashed rgba(16,24,40,0.04)}
+
+    .donate{display:flex;gap:8px;align-items:center}
+    .donate a{flex:1}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+
+    @media (max-width:900px){main{grid-template-columns:1fr;}}
+
+    @media (max-width: 768px), (orientation: portrait) {
+      main {grid-template-columns: 1fr !important;}
+      .hero {font-size: 0.95rem;padding: 18px;}
+      header {flex-direction: column;align-items: flex-start;gap: 10px;}
+      .btn, .btn.primary {width: 100%;justify-content: center;}
+      .profile {flex-direction: column;text-align: center;}
+      .avatar {width: 72px;height: 72px;}
+    }
+
+    @media (orientation: landscape) and (max-width: 1024px) {
+      main {grid-template-columns: 1fr 280px;}
+    }
+
+    .small{font-size:13px;color:var(--muted)}
+    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .6s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    .dark{--bg:#0f1724;--card:#071020;--muted:#9aa4b2;--accent:#0fb6a9;--accent-dark:#0a8a7f;--glass: rgba(255,255,255,0.03);color:#e6eef2}
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <header class="fade-up">
+      <div class="brand">
+        <div class="logo">
+          <img src="STN PROJECT.png" alt="STN PROJECT logo">
+        </div>
+        <div>
+          <h1 class="title">STN PROJECT REBORN</h1>
+          <p class="subtitle">Soundman • Fotografer • Elektronika</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn" id="themeToggle" title="Toggle dark">🌗 Mode</button>
+        <a class="btn primary" href="#donate">Donate</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero card fade-up" style="animation-delay:.05s">
+        <h2>Halo — saya Steven Samuel Setiawan</h2>
+        <p>Owner of STN PROJECT REBORN. Berdiri sejak 19 September 2023. Saya bergerak di bidang sound, fotografi, dan proyek elektronika DIY.</p>
+
+        <hr style="margin:16px 0;border:none;border-top:1px solid rgba(16,24,40,0.04)">
+        <h3 style="margin:0 0 8px 0">Tentang singkat</h3>
+        <p class="small">Saya membuat konten dan layanan terkait event sound, fotografi, serta proyek-proyek hardware. Ingin kolaborasi atau pesan layanan? Kontak lewat sosial di samping.</p>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="https://www.tiktok.com/@stevnsaa?_t=ZS-90OQTUpT2Ps&_r=1">Tiktok</a>
+          <a class="btn" href="https://www.instagram.com/stvnn_saa?igsh=MTBxcngzOHU5cTIycg==">Instagram</a>
+        </div>
+      </section>
+
+      <aside class="fade-up" style="animation-delay:.1s">
+        <div class="card profile">
+          <div class="avatar"><img src="STN PROJECT.png" alt="avatar"></div>
+          <div class="meta">
+            <h3>Steven Samuel</h3>
+            <p class="small">Owner • STN PROJECT REBORN</p>
+            <p class="small" style="margin-top:8px">Perkenalkan: saya owner dari STN Project REBORN.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4 style="margin:0 0 8px 0">Akun Sosmed</h4>
+          <div class="links">
+            <a class="link" href="https://www.tiktok.com/@stevnsaa?_t=ZS-90OQTUpT2Ps&_r=1">▶️ Akun Tiktok</a>
+            <a class="link" href="https://www.instagram.com/stvnn_saa?igsh=MTBxcngzOHU5cTIycg==">📸 Akun Instagram</a>
+          </div>
+        </div>
+
+        <div class="card" id="donate" style="margin-top:12px">
+          <h4 style="margin:0 0 8px 0">Support / Donate</h4>
+          <div class="donate">
+            <a class="btn primary" href="https://saweria.co/stevenxproject" target="_blank">Donate via Saweria</a>
+          </div>
+          <p class="small" style="margin-top:8px">Terima kasih atas dukunganmu — setiap donasi membantu pengembangan konten & peralatan.</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4 style="margin:0 0 8px 0">Info</h4>
+          <p class="small">Tanggal berdiri: 19 Sep 2023</p>
+          <p class="small">Lokasi: Markas STN Project</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4 style="margin:0 0 8px 0">File & Coding</h4>
+          <p class="small">Akses folder Google Drive saya untuk melihat dan menyimpan file coding, proyek, serta dokumentasi STN PROJECT REBORN.</p>
+          <a class="btn" href="https://drive.google.com/drive/folders/1YFhjsiriEBeOFB7lhuNfVTu1MUBfKeL1?usp=sharing" target="_blank">💾 Google Drive Saya</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <p class="small">© 2025 STN PROJECT REBORN — Created by Steven Samuel. Built with ❤️</p>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('stn_theme');
+    if(saved === 'dark') document.body.classList.add('dark');
+    btn.addEventListener('click', ()=>{
+      document.body.classList.toggle('dark');
+      localStorage.setItem('stn_theme', document.body.classList.contains('dark')? 'dark':'light');
+    });
+  </script>
+</body>
+</html>
