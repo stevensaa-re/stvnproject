@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>STN PROJECT REBORN — Official</title>
+  <title>STN PROJECT REBORN — Official Site</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -51,7 +51,6 @@
 
     footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
 
-    /* Popup style */
     .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s ease}
     .popup-overlay.active{opacity:1;pointer-events:auto}
     .popup{background:#fff;padding:22px 26px;border-radius:12px;max-width:340px;width:90%;text-align:center;position:relative;animation:fadeIn .35s ease}
@@ -83,7 +82,6 @@
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <button class="btn" id="themeToggle" title="Toggle dark">🌗 Mode</button>
-        <a class="btn primary" href="#donate">Donate</a>
       </div>
     </header>
 
@@ -166,7 +164,6 @@
       localStorage.setItem('stn_theme', document.body.classList.contains('dark')? 'dark':'light');
     });
 
-    // Popup logic
     const popupOverlay = document.getElementById('popupOverlay');
     const popupTitle = document.getElementById('popupTitle');
     const popupButton = document.getElementById('popupButton');
