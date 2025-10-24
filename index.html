@@ -1,197 +1,754 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STN PROJECT REBORN — Official Site</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f8f8f6;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --accent:#14aaa3;
-      --accent-dark:#0f7f77;
-      --danger:#ff5050;
-      --pink:#ff7aa8;
-      --pink-dark:#ff3f6f;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);color:#111}
-    .container{max-width:980px;margin:36px auto;padding:24px}
-
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:72px;height:72px;border-radius:12px;overflow:hidden;flex:0 0 72px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
-    .logo img{width:100%;height:100%;object-fit:cover;display:block}
-    h1.title{font-size:20px;margin:0}
-    p.subtitle{margin:0;color:var(--muted);font-size:13px}
-
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:var(--card);border:1px solid rgba(16,24,40,0.04);cursor:pointer;text-decoration:none;color:inherit;font-weight:600;transition:all .25s ease}
-    .btn:hover{transform:scale(1.05)}
-    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;border:none;box-shadow:0 8px 24px rgba(20,170,163,0.12)}
-
-    main{display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:22px}
-    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));padding:22px;border-radius:14px;box-shadow:0 8px 30px rgba(16,24,40,0.04)}
-    .hero h2{margin:0 0 8px 0;font-size:26px}
-    .hero p{margin:0 0 16px;color:var(--muted)}
-
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(16,24,40,0.03)}
-
-    .gallery-section{margin-top:30px}
-    .gallery-section h3{margin-bottom:14px;font-weight:700}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-    .gallery img{width:100%;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);transition:transform .3s ease}
-    .gallery img:hover{transform:scale(1.05)}
-
-    .profile{display:flex;gap:16px;align-items:center}
-    .avatar{width:88px;height:88px;border-radius:12px;overflow:hidden;flex:0 0 88px}
-    .avatar img{width:100%;height:100%;object-fit:cover}
-
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
-
-    .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s ease}
-    .popup-overlay.active{opacity:1;pointer-events:auto}
-    .popup{background:#fff;padding:22px 26px;border-radius:12px;max-width:340px;width:90%;text-align:center;position:relative;animation:fadeIn .35s ease}
-    .popup .close-btn{position:absolute;top:8px;right:12px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--pink);transition:all .2s ease}
-    .popup .close-btn:hover{color:var(--pink-dark);transform:scale(1.2)}
-    @keyframes fadeIn{from{transform:scale(0.95);opacity:0;}to{transform:scale(1);opacity:1;}}
-
-    @media (max-width:900px){main{grid-template-columns:1fr;}}
-    @media (max-width: 768px), (orientation: portrait) {
-      main {grid-template-columns: 1fr !important;}
-      header {flex-direction: column;align-items: flex-start;gap: 10px;}
-      .btn, .btn.primary {width: 100%;justify-content: center;}
-      .profile {flex-direction: column;text-align: center;}
-      .avatar {width: 72px;height: 72px;}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .dark{--bg:#0f1724;--card:#071020;--muted:#9aa4b2;--accent:#0fb6a9;--accent-dark:#0a8a7f;--glass: rgba(255,255,255,0.03);color:#e6eef2}
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: #fff;
+      overflow-x: hidden;
+      transition: all 0.5s ease;
+    }
+
+    body.light-mode {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
+      color: #1e293b;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    body.light-mode nav {
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-info h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .nav-info p {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .theme-btn {
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .theme-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    body.light-mode .theme-btn {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      z-index: 1;
+    }
+
+    .hero-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto 40px;
+      overflow: hidden;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.light-mode .hero-title {
+      background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      opacity: 0.9;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.8;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .tag {
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    body.light-mode .tag {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      padding: 15px 35px;
+      border-radius: 30px;
+      border: none;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-btn.instagram {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+      color: #fff;
+    }
+
+    .social-btn.tiktok {
+      background: linear-gradient(135deg, #00f2ea, #ff0050);
+      color: #fff;
+    }
+
+    .social-btn.drive {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+      color: #fff;
+    }
+
+    .social-btn.donate {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #fff;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 30px;
+    }
+
+    .section-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    body.light-mode .section-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .section-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      border-radius: 2px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 25px;
+      margin-top: 30px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .gallery::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .gallery::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+
+    .gallery::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .gallery-item {
+      flex: 0 0 auto;
+      width: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      scroll-snap-align: start;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    body.light-mode .info-card {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #60a5fa;
+    }
+
+    body.light-mode .info-card h3 {
+      color: #2563eb;
+    }
+
+    .info-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 50px 20px;
+      opacity: 0.7;
+      font-size: 1rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(30px);
+      border-radius: 30px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      animation: slideUp 0.4s ease;
+      position: relative;
+    }
+
+    body.light-mode .modal-content {
+      background: rgba(255, 255, 255, 0.98);
+      color: #1e293b;
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.7;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .modal-btn {
+      padding: 15px 40px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .modal-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(96, 165, 250, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .hero-avatar {
+        width: 150px;
+        height: 150px;
+      }
+
+      .section-card {
+        padding: 30px 20px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .social-buttons {
+        flex-direction: column;
+      }
+
+      .social-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .gallery {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .gallery-item {
+        width: 280px;
+      }
+
+      .gallery-item img {
+        height: 350px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container" id="app">
-    <header class="fade-up">
-      <div class="brand">
-        <div class="logo"><img src="STN PROJECT.png" alt="STN PROJECT logo"></div>
-        <div>
-          <h1 class="title">STN PROJECT REBORN</h1>
-          <p class="subtitle">Soundman • Fotografer • Elektronika • PC Enthusiast</p>
+  <nav>
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="nav-logo">
+          <img src="STN PROJECT.png" alt="STN PROJECT">
+        </div>
+        <div class="nav-info">
+          <h1>STN PROJECT REBORN</h1>
+          <p>Soundman • Fotografer • Elektronika • PC Enthusiast</p>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:8px">
-        <button class="btn" id="themeToggle" title="Toggle dark">🌗 Mode</button>
+      <button class="theme-btn" id="themeToggle">🌙 Mode Gelap</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-avatar">
+        <img src="STN PROJECT.png" alt="Steven Samuel">
       </div>
-    </header>
+      <h1 class="hero-title">Steven Samuel Setiawan</h1>
+      <p class="hero-subtitle">Owner of STN PROJECT REBORN</p>
+      <p class="hero-description">
+        Berdiri sejak 19 September 2023. Saya bergerak di bidang sound, fotografi, elektronika, serta dunia gaming dan perakitan PC. Saya membagikan pengalaman, setup, dan build optimal untuk kebutuhan creator maupun gamer.
+      </p>
+      
+      <div class="hero-tags">
+        <div class="tag">🎵 Sound Engineer</div>
+        <div class="tag">📸 Photographer</div>
+        <div class="tag">🔧 Electronics</div>
+        <div class="tag">🎮 Gaming & PC Build</div>
+      </div>
 
-    <main>
-      <section class="hero card fade-up" style="animation-delay:.05s">
-        <h2>Halo — saya Steven Samuel Setiawan</h2>
-        <p>Owner of STN PROJECT REBORN. Berdiri sejak 19 September 2023. Saya bergerak di bidang sound, fotografi, elektronika, serta dunia gaming dan perakitan PC. Saya membagikan pengalaman, setup, dan build optimal untuk kebutuhan creator maupun gamer.</p>
+      <div class="social-buttons">
+        <button class="social-btn instagram" onclick="openModal('instagram')">
+          📸 Instagram
+        </button>
+        <button class="social-btn tiktok" onclick="openModal('tiktok')">
+          🎵 TikTok
+        </button>
+        <button class="social-btn drive" onclick="openModal('drive')">
+          💾 Google Drive
+        </button>
+        <button class="social-btn donate" onclick="openModal('donate')">
+          Donate
+        </button>
+      </div>
+    </div>
+  </section>
 
-        <hr style="margin:16px 0;border:none;border-top:1px solid rgba(16,24,40,0.04)">
-        <h3 style="margin:0 0 8px 0">Tentang singkat</h3>
-        <p class="small">Saya membuat konten dan layanan terkait event sound, fotografi, proyek-proyek hardware, dan dunia gaming. Ingin kolaborasi atau pesan layanan? Kontak lewat sosial di samping.</p>
+  <div class="container">
+    <div class="section-card">
+      <h2 class="section-title">Tentang STN PROJECT REBORN</h2>
+      <p class="section-text">
+        STN PROJECT REBORN adalah platform yang saya ciptakan untuk berbagi passion saya di berbagai bidang. Dari menangani sound system untuk event, fotografi profesional, proyek elektronika custom, hingga membantu gamers dan content creators menemukan setup PC yang sempurna. Saya percaya bahwa teknologi dan kreativitas dapat berjalan beriringan untuk menciptakan sesuatu yang luar biasa.
+      </p>
+    </div>
 
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn" onclick="openPopup('instagram')">📸 Instagram </button>
-          <button class="btn" onclick="openPopup('tiktok')">🎵 TikTok </button>
+    <div class="section-card">
+      <h2 class="section-title">Layanan & Keahlian</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🎵 Sound Engineering</h3>
+          <p>Penanganan sound system untuk berbagai event, dari konser kecil hingga acara besar. Pengalaman dalam mixing, mastering, dan audio setup.</p>
         </div>
-
-        <div class="gallery-section">
-          <h3>📷 Galeri STN Project</h3>
-          <div class="gallery">
-            <img src="foto 1.jpg" alt="Foto 1">
-            <img src="foto 2.jpg" alt="Foto 2">
-            <img src="foto 3.jpg" alt="Foto 3">
-            <img src="foto 4.jpg" alt="Foto 4">
-          </div>
+        <div class="info-card">
+          <h3>📸 Fotografi</h3>
+          <p>Jasa fotografi profesional untuk event, produk, dan portrait. Mengabadikan momen terbaik Anda dengan kualitas terbaik.</p>
         </div>
-      </section>
-
-      <aside class="fade-up" style="animation-delay:.1s">
-        <div class="card profile">
-          <div class="avatar"><img src="STN PROJECT.png" alt="avatar"></div>
-          <div>
-            <h3>Steven Samuel</h3>
-            <p class="small">Owner • STN PROJECT REBORN</p>
-            <p class="small" style="margin-top:8px">Perkenalkan: saya owner dari STN Project REBORN yang berfokus pada sound, fotografi, elektronika, dan gaming setup.</p>
-          </div>
+        <div class="info-card">
+          <h3>🔧 Proyek Elektronika</h3>
+          <p>Custom electronic projects, troubleshooting, dan modifikasi hardware sesuai kebutuhan spesifik Anda.</p>
         </div>
-
-        <div class="card" style="margin-top:12px">
-          <h4>Support / Donate</h4>
-          <div class="donate">
-            <a class="btn primary" href="https://saweria.co/stevenxproject" target="_blank">Donate via Saweria</a>
-          </div>
+        <div class="info-card">
+          <h3>🎮 PC Building & Gaming Setup</h3>
+          <p>Konsultasi dan perakitan PC gaming/workstation optimal. Rekomendasi parts terbaik sesuai budget dan kebutuhan.</p>
         </div>
+      </div>
+    </div>
 
-        <div class="card" style="margin-top:12px">
-          <h4>Info</h4>
-          <p class="small">Tanggal berdiri: 19 Sep 2023</p>
-          <p class="small">Lokasi: Markas STN Project</p>
+    <div class="section-card">
+      <h2 class="section-title">Galeri Proyek</h2>
+      <p class="section-text" style="margin-bottom: 20px;">
+        Beberapa hasil karya dan proyek yang telah saya kerjakan
+      </p>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="foto 1.jpg" alt="Project 1">
         </div>
-
-        <div class="card" style="margin-top:12px">
-          <h4>File & Coding</h4>
-          <p class="small">Akses folder Google Drive gwaa buat lihat file coding, proyek, serta dokumentasi STN PROJECT REBORN.</p>
-          <a class="btn" href="https://drive.google.com/drive/folders/1YFhjsiriEBeOFB7lhuNfVTu1MUBfKeL1?usp=sharing" target="_blank">💾 Google Drive </a>
+        <div class="gallery-item">
+          <img src="foto 2.jpg" alt="Project 2">
         </div>
-      </aside>
-    </main>
+        <div class="gallery-item">
+          <img src="foto 3.jpg" alt="Project 3">
+        </div>
+        <div class="gallery-item">
+          <img src="foto 4.jpg" alt="Project 4">
+        </div>
+      </div>
+    </div>
 
-    <footer>
-      <p class="small">© 2025 STN PROJECT REBORN — Created by Steven Samuel. Built with ❤️</p>
-    </footer>
+    <div class="section-card">
+      <h2 class="section-title">Informasi</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>📅 Tanggal Berdiri</h3>
+          <p>19 September 2023</p>
+        </div>
+        <div class="info-card">
+          <h3>📍 Lokasi</h3>
+          <p>Markas STN Project</p>
+        </div>
+        <div class="info-card">
+          <h3>💼 Status</h3>
+          <p>Active & Accepting Projects</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Popup -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup" id="popupBox">
-      <button class="close-btn" onclick="closePopup()">&times;</button>
-      <h3 id="popupTitle"></h3>
-      <button class="btn primary" id="popupButton">Go to Site</button>
+  <footer class="footer">
+    <p>© 2025 STN PROJECT REBORN — Created by Steven Samuel. Built with ❤️</p>
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <button class="modal-btn" id="modalBtn">Kunjungi Sekarang</button>
     </div>
   </div>
 
   <script>
-    const btn = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('stn_theme');
-    if(saved === 'dark') document.body.classList.add('dark');
-    btn.addEventListener('click', ()=>{
-      document.body.classList.toggle('dark');
-      localStorage.setItem('stn_theme', document.body.classList.contains('dark')? 'dark':'light');
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      themeToggle.textContent = body.classList.contains('light-mode') ? '🌙 Mode Gelap' : '☀️ Mode Terang';
     });
 
-    const popupOverlay = document.getElementById('popupOverlay');
-    const popupTitle = document.getElementById('popupTitle');
-    const popupButton = document.getElementById('popupButton');
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-    function openPopup(type){
-      let title = '', link = '';
-      if(type==='drive'){
-        title = 'Kunjungi Google Drive Saya';
-        link = 'https://drive.google.com/drive/folders/1YFhjsiriEBeOFB7lhuNfVTu1MUBfKeL1?usp=sharing';
-      } else if(type==='instagram'){
-        title = 'Lihat Instagram Saya';
-        link = 'https://www.instagram.com/stvnn_saa?igsh=MTBxcngzOHU5cTIycg==';
-      } else if(type==='tiktok'){
-        title = 'Lihat Akun TikTok Saya';
-        link = 'https://www.tiktok.com/@stevnsaa?_t=ZS-90OQTUpT2Ps&_r=1';
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-card').forEach(card => {
+      observer.observe(card);
+    });
+
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBtn = document.getElementById('modalBtn');
+    let currentLink = '';
+
+    const links = {
+      instagram: {
+        title: '📸 Lihat Instagram Saya',
+        url: 'https://www.instagram.com/stvnn_saa?igsh=MTBxcngzOHU5cTIycg=='
+      },
+      tiktok: {
+        title: '🎵 Lihat Akun TikTok Saya',
+        url: 'https://www.tiktok.com/@stevnsaa?_t=ZS-90OQTUpT2Ps&_r=1'
+      },
+      drive: {
+        title: '💾 Kunjungi Google Drive Saya',
+        url: 'https://drive.google.com/drive/folders/1YFhjsiriEBeOFB7lhuNfVTu1MUBfKeL1?usp=sharing'
+      },
+      donate: {
+        title: 'Donate via Saweria',
+        url: 'https://saweria.co/stevenxproject'
       }
-      popupTitle.textContent = title;
-      popupButton.onclick = ()=>{
-        window.open(link,'_blank');
-        closePopup();
-      };
-      popupOverlay.classList.add('active');
-      setTimeout(()=> closePopup(), 10000);
+    };
+
+    function openModal(type) {
+      const data = links[type];
+      modalTitle.textContent = data.title;
+      currentLink = data.url;
+      modal.classList.add('active');
     }
 
-    function closePopup(){
-      popupOverlay.classList.remove('active');
+    function closeModal() {
+      modal.classList.remove('active');
     }
+
+    modalBtn.addEventListener('click', () => {
+      window.open(currentLink, '_blank');
+      closeModal();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    let autoCloseTimer;
+    const originalOpenModal = window.openModal;
+    window.openModal = function(type) {
+      originalOpenModal(type);
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(closeModal, 10000);
+    };
   </script>
 </body>
 </html>
