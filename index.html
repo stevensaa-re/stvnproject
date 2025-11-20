@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STN PROJECT REBORN – Official Site</title>
+  <title>STN PROJECT REBORN – Official Website</title>
   <style>
     * {
       margin: 0;
@@ -681,6 +681,132 @@
       box-shadow: 0 15px 40px rgba(96, 165, 250, 0.6);
     }
 
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 4000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+      padding: 20px;
+    }
+
+    .gallery-modal.active {
+      display: flex;
+    }
+
+    .gallery-modal-content {
+      background: rgba(10, 14, 39, 0.98);
+      backdrop-filter: blur(40px);
+      border-radius: 25px;
+      padding: 30px;
+      max-width: 1100px;
+      width: 100%;
+      border: 3px solid rgba(96, 165, 250, 0.4);
+      animation: slideUp 0.5s ease;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-height: 90vh;
+      overflow: hidden;
+    }
+
+    body.light-mode .gallery-modal-content {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: #2563eb;
+    }
+
+    .gallery-modal-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .gallery-modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-modal-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .gallery-modal-info::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .gallery-modal-info::-webkit-scrollbar-track {
+      background: rgba(96, 165, 250, 0.1);
+      border-radius: 10px;
+    }
+
+    .gallery-modal-info::-webkit-scrollbar-thumb {
+      background: rgba(96, 165, 250, 0.4);
+      border-radius: 10px;
+    }
+
+    .gallery-modal-title {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.light-mode .gallery-modal-title {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gallery-modal-description {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .gallery-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(96, 165, 250, 0.2);
+      border: 2px solid rgba(96, 165, 250, 0.4);
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      color: inherit;
+      transition: all 0.3s ease;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .gallery-modal-close:hover {
+      background: rgba(96, 165, 250, 0.4);
+      transform: rotate(90deg) scale(1.1);
+      border-color: rgba(96, 165, 250, 0.6);
+    }
+
     @media (max-width: 768px) {
       .nav-info p {
         display: none;
@@ -704,6 +830,17 @@
 
       .info-grid {
         grid-template-columns: 1fr;
+      }
+
+      .gallery-modal-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+
+      .gallery-modal-image {
+        height: 300px;
       }
     }
 
@@ -770,7 +907,6 @@
       </div>
       <h1 class="hero-title">Steven Samuel Setiawan</h1>
       <p class="hero-subtitle">Owner of STN PROJECT REBORN</p>
-      </p>
       
       <div class="hero-tags">
         <div class="tag">🎵 Sound Engineer</div>
@@ -802,6 +938,7 @@
       <h2 class="section-title">Tentang STN PROJECT REBORN</h2>
       <p class="section-text">
         STN PROJECT REBORN adalah platform yang saya buat untuk berbagi passion di berbagai bidang. Dari menangani sound system untuk event, fotografi profesional, proyek elektronika custom, web development, dan konsultasi seputar rakitan komputer.
+      </p>
     </div>
 
     <div class="section-card">
@@ -840,28 +977,28 @@
         Beberapa hasil karya dan proyek yang saya kerjakan
       </p>
       <div class="gallery">
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(0)">
           <img src="foto 1.jpg" alt="Project 1">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(1)">
           <img src="foto 2.jpg" alt="Project 2">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(2)">
           <img src="foto 3.jpg" alt="Project 3">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(3)">
           <img src="foto 4.jpg" alt="Project 4">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(4)">
           <img src="foto 5.jpg" alt="Project 5">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(5)">
           <img src="foto 6.jpg" alt="Project 6">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(6)">
           <img src="foto 7.jpg" alt="Project 7">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" onclick="openGalleryModal(7)">
           <img src="foto 8.jpg" alt="Project 8">
         </div>
       </div>
@@ -924,6 +1061,19 @@
       <button class="modal-close" onclick="closeModal()">×</button>
       <h2 class="modal-title" id="modalTitle"></h2>
       <button class="modal-btn" id="modalBtn">Kunjungi Sekarang</button>
+    </div>
+  </div>
+
+  <div class="gallery-modal" id="galleryModal">
+    <div class="gallery-modal-content">
+      <button class="gallery-modal-close" onclick="closeGalleryModal()">×</button>
+      <div class="gallery-modal-image">
+        <img id="galleryModalImage" src="" alt="">
+      </div>
+      <div class="gallery-modal-info">
+        <h2 class="gallery-modal-title" id="galleryModalTitle"></h2>
+        <p class="gallery-modal-description" id="galleryModalDescription"></p>
+      </div>
     </div>
   </div>
 
@@ -1014,15 +1164,80 @@
       }
     });
 
-    let autoCloseTimer;
-    const originalOpenModal = window.openModal;
-    if (originalOpenModal) {
-      window.openModal = function(type) {
-        originalOpenModal(type);
-        clearTimeout(autoCloseTimer);
-        autoCloseTimer = setTimeout(closeModal, 10000);
-      };
+    const galleryData = [
+      {
+        title: 'PC server',
+        image: 'foto 1.jpg',
+        description: 'ini adalah PC server yang saya gunakan. speknya masih low end,tapi cukup untuk kebutuhan saya. '
+      },
+      {
+        title: 'PC custom ceritanya',
+        image: 'foto 2.jpg',
+        description: 'saya iseng buat ngerakit pc didalem laci meja. hasilnya ya suhunya tinggi wkwk :v.'
+      },
+      {
+        title: 'Glances monitoring',
+        image: 'foto 3.jpg',
+        description: 'sebuah proyek untuk memonitoring PC server saya. dan bisa diakses dimana saja'
+      },
+      {
+        title: 'mixing di event',
+        image: 'foto 4.jpg',
+        description: 'ini adalah momen dimana saya ditugaskan untuk mixing disebuah acara.'
+      },
+      {
+        title: 'Arduino proyek - VU meter digital',
+        image: 'foto 5.jpg',
+        description: 'ini proyek IOT saya,yaitu vu meter digital. vu meter ini digabungkan ke sound system saya dan hasilnya memuaskan juga wkwk :D'
+      },
+      {
+        title: 'Arduino dijadikan gantungan kunci',
+        image: 'foto 6.jpg',
+        description: 'ini momen disaat arduino saya sudah tewas (sudah gabisa upload codingan lagi) jadi saya jadiin gantungan kunci aja biar berguna sedikit :v.'
+      },
+      {
+        title: 'Proyek jam digital',
+        image: 'foto 7.jpg',
+        description: 'saya membuat jam digital ini dari modul tm1637 dan wemos d1 mini. menggunakan NTP (bukan RTC).'
+      },
+      {
+        title: 'Truenas server',
+        image: 'foto 8.jpg',
+        description: 'ini OS yang saya gunakan untuk server saya,Truenas Scale.'
+      }
+    ];
+
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryModalImage = document.getElementById('galleryModalImage');
+    const galleryModalTitle = document.getElementById('galleryModalTitle');
+    const galleryModalDescription = document.getElementById('galleryModalDescription');
+
+    function openGalleryModal(index) {
+      const data = galleryData[index];
+      galleryModalImage.src = data.image;
+      galleryModalImage.alt = data.title;
+      galleryModalTitle.textContent = data.title;
+      galleryModalDescription.textContent = data.description;
+      galleryModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
+
+    function closeGalleryModal() {
+      galleryModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    galleryModal.addEventListener('click', (e) => {
+      if (e.target === galleryModal) {
+        closeGalleryModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && galleryModal.classList.contains('active')) {
+        closeGalleryModal();
+      }
+    });
   </script>
 </body>
-</html
+</html>
