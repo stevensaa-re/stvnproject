@@ -1099,7 +1099,6 @@
   </div>
 
   <script>
-    // Particle animation
     for (let i = 0; i < 50; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
@@ -1109,7 +1108,6 @@
       document.getElementById('particles').appendChild(particle);
     }
 
-    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
@@ -1118,7 +1116,6 @@
       themeToggle.textContent = body.classList.contains('light-mode') ? '🌙 Mode Gelap' : '☀️ Mode Terang';
     });
 
-    // Intersection observer for section cards
     const observerOptions = {
       threshold: 0.15,
       rootMargin: '0px 0px -50px 0px'
@@ -1136,7 +1133,6 @@
       observer.observe(card);
     });
 
-    // Modal functionality
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const modalBtn = document.getElementById('modalBtn');
@@ -1183,7 +1179,6 @@
       }
     });
 
-    // Gallery modal functionality
     const galleryData = [
       {
         title: 'PC server',
@@ -1256,7 +1251,6 @@
       }
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (modal.classList.contains('active')) {
