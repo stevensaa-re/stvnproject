@@ -626,9 +626,19 @@
       to { opacity: 1; }
     }
 
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
     @keyframes slideUp {
       from { transform: translateY(80px) scale(0.9); opacity: 0; }
       to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(80px) scale(0.9); opacity: 0; }
     }
 
     .modal-close {
@@ -690,12 +700,16 @@
       z-index: 4000;
       align-items: center;
       justify-content: center;
-      animation: fadeIn 0.3s ease;
       padding: 20px;
     }
 
     .gallery-modal.active {
       display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .gallery-modal.closing {
+      animation: fadeOut 0.3s ease;
     }
 
     .gallery-modal-content {
@@ -706,7 +720,6 @@
       max-width: 1100px;
       width: 100%;
       border: 3px solid rgba(96, 165, 250, 0.4);
-      animation: slideUp 0.5s ease;
       box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
       position: relative;
       display: grid;
@@ -714,6 +727,14 @@
       gap: 30px;
       max-height: 90vh;
       overflow: hidden;
+    }
+
+    .gallery-modal.active .gallery-modal-content {
+      animation: slideUp 0.5s ease;
+    }
+
+    .gallery-modal.closing .gallery-modal-content {
+      animation: slideDown 0.3s ease;
     }
 
     body.light-mode .gallery-modal-content {
@@ -1078,6 +1099,7 @@
   </div>
 
   <script>
+    // Particle animation
     for (let i = 0; i < 50; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
@@ -1087,6 +1109,7 @@
       document.getElementById('particles').appendChild(particle);
     }
 
+    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
@@ -1095,6 +1118,7 @@
       themeToggle.textContent = body.classList.contains('light-mode') ? '🌙 Mode Gelap' : '☀️ Mode Terang';
     });
 
+    // Intersection observer for section cards
     const observerOptions = {
       threshold: 0.15,
       rootMargin: '0px 0px -50px 0px'
@@ -1112,6 +1136,7 @@
       observer.observe(card);
     });
 
+    // Modal functionality
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const modalBtn = document.getElementById('modalBtn');
@@ -1158,12 +1183,7 @@
       }
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
-    });
-
+    // Gallery modal functionality
     const galleryData = [
       {
         title: 'PC server',
@@ -1223,8 +1243,11 @@
     }
 
     function closeGalleryModal() {
-      galleryModal.classList.remove('active');
-      document.body.style.overflow = '';
+      galleryModal.classList.add('closing');
+      setTimeout(() => {
+        galleryModal.classList.remove('active', 'closing');
+        document.body.style.overflow = '';
+      }, 300);
     }
 
     galleryModal.addEventListener('click', (e) => {
@@ -1233,9 +1256,15 @@
       }
     });
 
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && galleryModal.classList.contains('active')) {
-        closeGalleryModal();
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) {
+          closeModal();
+        }
+        if (galleryModal.classList.contains('active')) {
+          closeGalleryModal();
+        }
       }
     });
   </script>
